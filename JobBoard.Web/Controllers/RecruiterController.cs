@@ -28,6 +28,7 @@ namespace JobBoard.Web.Controllers
                     Salary = d.Salary,
                     ContractType = d.ContractType,
                     PublishedAt = d.PublishedAt,
+                    IsActive = d.IsActive
                 });
 
             return View(vms);
