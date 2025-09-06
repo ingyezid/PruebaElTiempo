@@ -88,7 +88,8 @@
             if (!res || !res.ok) {
                 crudFailure(res); return;
             }
-            setTimeout(function () { window.location = '@Url.Action("Edit", "Offer", new { area = "Recruiter" })'; }, 800);
+            showToast(res.message || 'Operación exitosa');
+            setTimeout(function () { window.location = '@Url.Action("Index", "Recruiter")'; }, 1000);
         }
         function crudFailure() {
             showToast('No se pudo actualizar', true);
