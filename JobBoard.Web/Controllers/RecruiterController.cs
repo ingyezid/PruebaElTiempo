@@ -135,6 +135,20 @@ namespace JobBoard.Web.Controllers
 
             var newActive = !dto.IsActive;
 
+            // Update the Toggle
+            var updateDto = new JobOfferUpdateDto
+            {
+                Id = id,
+                Title = dto.Title,
+                Description = dto.Description,
+                Location = dto.Location,
+                Salary = dto.Salary,
+                ContractType = dto.ContractType.ToString(),
+                IsActive = newActive,
+                
+            };
+            Service.Update(id, updateDto);
+
             return Json(new { ok = true, active = newActive });
         }
 
