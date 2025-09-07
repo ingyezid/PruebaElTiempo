@@ -192,6 +192,31 @@
             }
 
             function applySort() {
+
+                const sort = $sort.value;
+                let sorted = [...items];
+
+                sorted.sort((a, b) => {
+                    const salaryA = parseFloat(a.dataset.salary) || 0;
+                    const salaryB = parseFloat(b.dataset.salary) || 0;
+                    const dateA = new Date(a.dataset.date);
+                    const dateB = new Date(b.dataset.date);
+
+                    switch (sort) {
+                        case "date_desc":
+                            return dateB - dateA; // Más recientes
+                        case "date_asc":
+                            return dateA - dateB; // Más antiguas
+                        case "salary_desc":
+                            return salaryB - salaryA; // Mejor salario
+                        case "salary_asc":
+                            return salaryA - salaryB; // Menor salario
+                        default:
+                            return 0;
+                    }
+                });
+
+                sorted.forEach(el => $cards.appendChild(el));
             }
 
             $cards.addEventListener('click', function (e) {
@@ -215,6 +240,8 @@
                 toast.show();
             });
 
+            // inicializando el orden por defecto
+            $sort.value = "date_desc"; 
             applySort();
             applyFilters();
 
