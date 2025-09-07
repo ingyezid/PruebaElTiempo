@@ -71,10 +71,14 @@ namespace JobBoard.Web.Controllers
             TempData["Toast"] = "Oferta creada";
             return RedirectToAction("Index");
         }
-
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            var response = Service.Get(id);
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Recruiter");
+            }
+
+            var response = Service.Get((int)id);
             if (response == null) return HttpNotFound();
 
             var vm = new JobOfferForm
@@ -107,7 +111,8 @@ namespace JobBoard.Web.Controllers
 
             // Update
             var dto = new JobOfferUpdateDto
-            {   Id = id,
+            {
+                Id = id,
                 Title = vm.Title,
                 Description = vm.Description,
                 Location = vm.Location,
@@ -145,7 +150,7 @@ namespace JobBoard.Web.Controllers
                 Salary = dto.Salary,
                 ContractType = dto.ContractType.ToString(),
                 IsActive = newActive,
-                
+
             };
             Service.Update(id, updateDto);
 
