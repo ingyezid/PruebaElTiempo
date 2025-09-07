@@ -42,6 +42,17 @@ namespace JobBoard.Services
             return Mapper.Map<JobOfferListDto>(e);
         }
 
+        public void Update(int id, JobOfferUpdateDto dto)
+        {
+            var e = Repo.Find(id);
+            if (e == null) return;
+            if (e.Id != dto.Id) return;
+            var u = Mapper.Map<JobOfferUpdateDto, JobOffer>(dto, e);
+            u.UpdatedAt = DateTime.UtcNow;
+            Repo.Update(u);
+            Uow.SaveChanges();
+        }
+
         public void Delete(int id)
         {
             var e = Repo.Find(id);

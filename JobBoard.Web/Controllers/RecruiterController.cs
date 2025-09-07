@@ -105,7 +105,17 @@ namespace JobBoard.Web.Controllers
                 return View(vm);
             }
 
-            //
+            // Update
+            var dto = new JobOfferUpdateDto
+            {   Id = id,
+                Title = vm.Title,
+                Description = vm.Description,
+                Location = vm.Location,
+                Salary = vm.Salary,
+                ContractType = vm.ContractType.ToString(),
+                IsActive = vm.IsActive
+            };
+            Service.Update(id, dto);
 
             if (Request.IsAjaxRequest())
             {

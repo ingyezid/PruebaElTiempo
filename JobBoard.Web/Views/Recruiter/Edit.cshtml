@@ -42,8 +42,8 @@
                 </div>
 
                 <div class="col-md-4">
-                    @Html.Label("Salario (COP)", new { @class = "form-label" })
-                    @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", type = "number", step = "0.01", min = "0" })
+                    @Html.Label("Salario (COP)", new { @class = "form-label" })                    
+                    @Html.TextBoxFor(m => m.Salary, "{0:0.##}", new { @class = "form-control", type = "number", step = "0.01", min = "0" })
                     @Html.ValidationMessageFor(m => m.Salary, "", new { @class = "text-danger" })
                 </div>
 

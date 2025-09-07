@@ -12,6 +12,9 @@ namespace JobBoard.Services.Contracts
         IEnumerable<JobOfferListDto> List(bool onlyActive = true);
         JobOfferListDto Get(int id);
         JobOfferListDto Create(JobOfferCreateDto dto);
+
+        void Update(int id, JobOfferUpdateDto dto);
+
         void Delete(int id);              
         void Apply(int offerId, string name, string email);
     }

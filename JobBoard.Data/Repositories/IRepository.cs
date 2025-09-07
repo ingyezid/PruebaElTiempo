@@ -13,6 +13,9 @@ namespace JobBoard.Data.Repository
         T FirstOrDefault(Expression<Func<T, bool>> predicate);
 
         void Add(T entity);
+        
+        void Update(T entity);
+
         void Remove(T entity);
 
         void Attach(T entity);

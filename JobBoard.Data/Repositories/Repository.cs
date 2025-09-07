@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using System;
+﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -30,6 +30,12 @@ namespace JobBoard.Data.Repository
             _set.Add(entity);
         }
 
+        public void Update(T entity)
+        {
+            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            _set.Attach(entity);
+            _ctx.Entry(entity).State = EntityState.Modified;
+        }
         public void Remove(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));

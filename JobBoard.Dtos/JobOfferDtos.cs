@@ -31,5 +31,9 @@ namespace JobBoard.Dtos
         public bool IsActive { get; set; } = true;
     }
 
-    public class JobOfferUpdateDto : JobOfferCreateDto { }
+    public class JobOfferUpdateDto : JobOfferCreateDto {
+        public int Id { get; set; }
+        public DateTime UpdatedAt { get; set; }
+
+    }
 }
